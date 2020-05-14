@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD XML Catalogs V1.1//EN" "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+  <!-- STOP 0.98.2 -->
+  <uri name="https://standaarden.overheid.nl/stop/imop/data/" uri="imop-data.xsd" />
+  <uri name="https://standaarden.overheid.nl/stop/imop/tekst/" uri="imop-tekst.xsd" />
+  <uri name="https://standaarden.overheid.nl/stop/imop/geo/" uri="imop-geo.xsd" />
+
+</catalog>

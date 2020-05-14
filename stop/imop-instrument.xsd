@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =======================
+     STOP INSTRUMENT-SCHEMA
+
+Dit instrument-schema is een ontwikkelartefact voor de (door)ontwikkeling van STOP.
+Het schema is in september 2019 per abuis uitgeleverd als onderdeel van STOP 0.98.1.
+Om terugwaartse compabiliteit te garanderen blijft het instrument-schema
+onderdeel van STOP 0.98.1-kern; het weglaten van het schema kan er immers toe
+leiden dat XML die valide was volgens de eerder uitgeleverde versie 0.98.1,
+niet meer valide is volgens deze heruitgave van 0.98.1.
+
+Omdat het schema geen rol heeft in de STOP-standaard zal het bij de doorontwikkeling
+van de STOP-standaard verwijderd worden.
+
+DIT SCHEMA IS *NIET* BEDOELD OM AANLEVERINGEN NAAR EN UITLEVERINGEN 
+VANUIT DSO-SYSTEMEN ZOALS LVBB EN OZON TE CODEREN. VOOR LVBB MOET GEBRUIK
+GEMAAKT WORDEN VAN DE SPECIFICATIE VAN HET BRONHOUDERKOPPELVLAK.
+
+Voor meer informatie over het bronhouderkoppelvlak zie 
+https://koop.gitlab.io/lvbb/bronhouderkoppelvlak/.
+Bestanden die gecodeerd zijn volgens dit instrument-schema kunnen 
+niet succesvol door LVBB worden verwerkt. 
+
+     ======================= -->
+
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="https://standaarden.overheid.nl/stop/imop/instrument/" version="0.98.1-kern"
+  xmlns:data="https://standaarden.overheid.nl/stop/imop/data/"
+  xmlns:geo="https://standaarden.overheid.nl/stop/imop/geo/"
+  xmlns:inst="https://standaarden.overheid.nl/stop/imop/instrument/"
+  xmlns:tekst="https://standaarden.overheid.nl/stop/imop/tekst/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="https://standaarden.overheid.nl/stop/imop/data/"
+    schemaLocation="imop-data.xsd" />
+  <xs:import namespace="https://standaarden.overheid.nl/stop/imop/geo/"
+    schemaLocation="imop-geo.xsd" />
+  <xs:import namespace="https://standaarden.overheid.nl/stop/imop/tekst/"
+    schemaLocation="imop-tekst.xsd" />
+
+  <xs:element name="BesluitVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:ExpressionIdentificatie" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:BesluitMetadata" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:Procedure" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Besluit" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:BesluitDoel" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OntwerpbesluitVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:ExpressionIdentificatie" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:BesluitMetadata" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:Procedure" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Besluit" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:BesluitDoel" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RegelingVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:ExpressionIdentificatie" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:RegelingMetadata" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:Statusverlopen" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Regeling" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InformatieObjectVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:ExpressionIdentificatie" />
+        <xs:element ref="data:InformatieObjectMetadata" />
+        <xs:element ref="geo:GeoInformatie" />
+        <xs:element ref="data:Achtergrond" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InformatieObjectMutatieVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:ExpressionIdentificatie" />
+        <xs:element ref="data:InformatieObjectMetadata" />
+
+        <xs:element ref="data:Achtergrond" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OfficielePublicatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:ExpressionIdentificatie" />
+        <xs:element ref="data:OfficielePublicatieMetadata" />
+        <xs:element ref="tekst:OfficielePublicatie" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Consolidatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:ConsolidatieIdentificatie" />
+        <xs:element ref="data:GeldigeInstrumentversies" />
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:Objectgeldigheid" />
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,314 @@
+@charset "UTF-8";
+@import url(http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css);
+
+/* algemeen */
+
+* {
+   margin: 0px;
+   padding: 0px;
+}
+body {
+   padding: 0px 12px 0px 0px;
+   word-wrap: break-word;
+}
+li, p {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   line-height: 14pt;
+}
+section.divisie ol + p, ul + p, p + p, div + p {
+   margin-top: 14pt;
+}
+span.nummer {
+    float: left;
+    width: 27.5mm;
+}
+p.heading_1 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 13pt;
+   font-weight: bold;
+   line-height: 14pt;
+   margin: 0pt 0mm 14pt 0mm;
+}
+p.heading_2 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 21pt 0mm 7pt 27.5mm;
+}
+p.heading_3 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.heading_4 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.heading_5 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.heading_6 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.heading_7 {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.heading_8 {
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   text-indent: -27.5mm;
+   margin: 14pt 0mm 0pt 27.5mm;
+}
+p.tussenkop {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-style: italic;
+   line-height: 14pt;
+   margin-top: 14pt;
+}
+
+/* inline */
+
+a {
+   text-decoration: none;
+}
+
+span.vet {
+   font-weight: bold;
+}
+span.cursief {
+   font-style: italic;
+}
+span.onderstreept {
+   text-decoration: underline;
+}
+span.superscript {
+   font-size: 0.8em;
+   position: relative;
+   top: -0.4em;
+   vertical-align: baseline;
+}
+span.subscript {
+   bottom: -0.3em;
+   font-size: 0.8em;
+   position: relative;
+   vertical-align: baseline;
+}
+
+/* nummering */
+
+ol {
+   list-style-type: none;
+   margin-left: 6mm;
+}
+ol.nummering_1 li {
+	counter-increment: nummering_1;
+	counter-reset: nummering_2;
+}
+ol.nummering_1 li:before {
+	content: counter(nummering_1) ".";
+	display: block;
+	float: left;
+	margin-left: -6mm;
+}
+ol.nummering_2 li {
+	counter-increment: nummering_2;
+}
+ol.nummering_2 li:before {
+	content: counter(nummering_2, lower-latin) ".";
+	display: block;
+	float: left;
+	margin-left: -6mm;
+}
+ul {
+   list-style-type: none;
+   margin-left: 6mm;
+}
+ul.nummering_1 li:before {
+	content: "\2022";
+	display: block;
+	float: left;
+	margin-left: -6mm;
+}
+ul.nummering_2 li:before {
+	content: "\2013";
+	display: block;
+	float: left;
+	margin-left: -6mm;
+}
+p + div.nummering_1, div + div.nummering_1 {
+   margin-top: 14pt;
+}
+div.item {
+   margin-left: 6mm;
+}
+div.nummer {
+   display: block;
+   float: left;
+   margin-left: -6mm;
+}
+div.inhoud p + p {
+   margin-top: 0pt;
+}
+
+/* tabel */
+
+table {
+   border: 1px solid black;
+   border-collapse: collapse;
+   margin-bottom: 14pt;
+   margin-top: 14pt;
+   table-layout: fixed;
+   width: 100%;
+}
+caption {
+   text-align: left;
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+}
+th {
+   background-color: black;
+   border: 1px solid black;
+   color: white;
+   height: 14pt;
+   padding: 3.5px 1.5mm 3.5px 1.5mm;
+   vertical-align: top;
+}
+td {
+   border: 1px solid black;
+   height: 14pt;
+   padding: 3.5px 1.5mm 3.5px 1.5mm;
+   vertical-align: top;
+}
+table p {
+   font-family: 'Verdana', sans-serif;
+   font-size: 8pt;
+   line-height: 14pt;
+}
+table div.item {
+   margin-left: 4mm;
+}
+table div.nummer {
+   display: block;
+   float: left;
+   margin-left: -4mm;
+}
+
+/* figuur */
+
+div.figuur {
+   display: block;
+   margin-bottom: 14pt;
+   margin-top: 14pt;
+}
+div.links {
+   float: left;
+   margin-right: 5mm;
+}
+div.rechts {
+   float: right;
+   margin-left: 5mm;
+}
+div.geen {
+   display: inline-block;
+}
+img.figuur {
+   max-height: 100%;
+   max-width: 100%;
+}
+p.figuur {
+   color: red;
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   line-height: 14pt;
+}
+p.bijschrift {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-style: italic;
+   line-height: 14pt;
+   margin-top: 7pt;
+}
+
+/* box */
+
+div.box {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   line-height: 14pt;
+   margin-top: 14pt;
+   margin-bottom: 14pt;
+   background-color: rgba(121,183,41,0.5);
+   padding: 7px;
+}
+div.box p.heading {
+   font-weight: bold;
+}
+/* metadata */
+
+div.imow_object {
+   color: red;
+   display: block;
+   margin-bottom: 14pt;
+   margin-left: 6mm;
+   margin-top: 14pt;
+}
+p.imow_object {
+   font-family: 'Verdana', sans-serif;
+   font-size: 10pt;
+   font-weight: bold;
+   line-height: 14pt;
+   margin-top: 14pt;
+}
+p.imow_naam {
+   font-family: 'Verdana', sans-serif;
+   font-size: 8pt;
+   font-weight: bold;
+   line-height: 12pt;
+   margin-top: 12pt;
+}
+p.imow_waarde {
+   font-family: 'Verdana', sans-serif;
+   font-size: 8pt;
+   line-height: 12pt;
+}
+p + p.imow_waarde {
+   margin-top: 0pt;
+}
+span.imow_waarde {
+   display: inline-block;
+   width: 15mm;
+}
+div.locatie {
+   display: block;
+   float: right;
+   margin-top: -10mm;
+}

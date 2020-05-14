@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lvbb:manifest xmlns:lvbb="http://www.overheid.nl/2017/lvbb">
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>opdracht.xml</lvbb:bestandsnaam>
+      <lvbb:contentType>application/xml</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>resultaat.xml</lvbb:bestandsnaam>
+      <lvbb:contentType>application/xml</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>manifest.xml</lvbb:bestandsnaam>
+      <lvbb:contentType>application/xml</lvbb:contentType>
+   </lvbb:bestand>
+   <!-- afbeeldingen -->
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_001.png</lvbb:bestandsnaam>
+      <lvbb:contentType>application/png</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_002.jpeg</lvbb:bestandsnaam>
+      <lvbb:contentType>application/jpeg</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_003.jpeg</lvbb:bestandsnaam>
+      <lvbb:contentType>application/jpeg</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_004.png</lvbb:bestandsnaam>
+      <lvbb:contentType>application/png</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_005.jpeg</lvbb:bestandsnaam>
+      <lvbb:contentType>application/jpeg</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_006.jpeg</lvbb:bestandsnaam>
+      <lvbb:contentType>application/jpeg</lvbb:contentType>
+   </lvbb:bestand>
+   <lvbb:bestand>
+      <lvbb:bestandsnaam>image_007.jpeg</lvbb:bestandsnaam>
+      <lvbb:contentType>application/jpeg</lvbb:contentType>
+   </lvbb:bestand>
+</lvbb:manifest>

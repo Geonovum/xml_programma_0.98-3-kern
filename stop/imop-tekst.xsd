@@ -1,0 +1,2390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+  targetNamespace="https://standaarden.overheid.nl/stop/imop/tekst/" version="0.98.1-kern"
+  xmlns:data="https://standaarden.overheid.nl/stop/imop/data/"
+  xmlns:tekst="https://standaarden.overheid.nl/stop/imop/tekst/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>Ontwikkelversie 0.98.x-kern - kopie van 0.98.0-beta dd 2019-07-01.</xs:documentation>
+    <xs:documentation>Bijgewerkt met veranderingen uit 0.98.1-beta 2019-07-19</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>Aanpassingen ten opzichte van versie 0.98.0-beta:</xs:documentation>
+    <xs:documentation>- 2019-09-10 - attribuut uitlijning op InlineTekstAfbeelding verwijderd</xs:documentation>
+    <xs:documentation>- 2019-09-10 - Gebruik van agComponent en (nieuw) agNieuwComponent consistent gemaakt; ExpressionIdentificatie  verwijderd</xs:documentation>
+    <xs:documentation>- 2019-09-09 - Verwijderd Attributen @type en @juridischGebruik voor element tekst:IntIoRef. Zijn verplaatst naar schema voor data:</xs:documentation>
+    <xs:documentation>- 2019-09-06 - InstrumentIdentificatie hernoemd naar ExpressionIdentificatie</xs:documentation>
+    <xs:documentation>- 2019-09-04 - Verwijderd element tekst:Was binnen tekst:Vervang, tekst:Verwijder, tekst:VoegToe</xs:documentation>
+    <xs:documentation>- 2019-09-04 - Toegevoegd element tekst:RegelingMutatie voor tekst:WijzigBijlage. tekst:RegelingMutatie heeft attributen: @componentnaam, @FRBRwork, @wordt,
+      @was.</xs:documentation>
+    <xs:documentation>- 2019-09-03 - namespace gen: en meta: vervangen door data:</xs:documentation>
+    <xs:documentation>- 2019-09-03 - Datatypes voor attributen voor een tabel specifieker en correct gedefinieerd.</xs:documentation>
+    <xs:documentation>- 2019-09-03 - Datatype van attribuut @ref voor tekst:Divisie aangepast van xs:anyURI naar xs:token (kan alleen een verwijzing naar eId bevatten).</xs:documentation>
+    <xs:documentation>- 2019-09-03 - Attribuut @sluitIn verwijderd voor tekst:Lichaam (Legacy, niet in gebruik).</xs:documentation>
+    <xs:documentation>- 2019-09-02 - Attribuut @id verwijderd voor tekst:NieuweRegeling en tekst:Regeling.</xs:documentation>
+    <xs:documentation>- 2019-08-28 - agExtrefOP - is verwijdert voor element tekst:Extref (legacy afkomstig uit de OP-collectie).</xs:documentation>
+    <xs:documentation>- 2019-08-28 - agExtrefDoelSoort - attribuut @soort verplicht gemaakt.</xs:documentation>
+    <xs:documentation>- 2019-08-28 - @soort voor element tekst:ExtIoRef verwijderd, moet altijd van het "JOIN" type zijn, andere keuzes zijn niet toegestaan.</xs:documentation>
+    <xs:documentation>- 2019-08-28 - @Id verwijderd uit agAlgemeen. (@Id heeft geen duidelijke functie - wId en eId zijn wat dat betreft de te gebruiken attributen).</xs:documentation>
+    <xs:documentation>- 2019-08-28 - Attribuut-groep agArtikel verwijderd (attributen @ref en @type) - legacy en onduidelijk wat het doel van deze attributen is/moet zijn.</xs:documentation>
+    <xs:documentation>- 2019-08-28 - agIntRef hernoemt naar agDoelReferentie (duidelijker naamgeving en is niet exclusief voor Interne referenties).</xs:documentation>
+    <xs:documentation>- 2019-08-28 - agReferentie (attribuut @ref) overal verwijderd m.u.v. tekst:Divisie (voor gebruik binnen een ArtikelsgewijzeToelichting ter referentie naar het artikel of
+      structuur waar de toelichting betrekking op heeft.</xs:documentation>
+    <xs:documentation>- 2019-08-28 - Attribuut @Wijzigactie toegevoegd aan elementen: tekst:Gereserveerd, tekst:Divisie, tekst:Noot, tekst:Nootref, tekst:FormeleDivisie. Vooral van belang voor het
+      faciliteren van correcte renvooi-weergave.</xs:documentation>
+    <xs:documentation>- 2019-08-22 - Attribuut @ref toegevoegd aan 'tekst:Divisie' voor een divisie binnen ArtikelgewijzeToelichting kan een referentie naar een artikel worden
+      opgenomen.</xs:documentation>
+    <xs:documentation>- 2019-08-22 - Aan enumeratie soort divisie voor tekst:Divisie de optie ArtikelToelichting toegevoegd.</xs:documentation>
+    <xs:documentation>- 2019-08-22 - Toegevoegd elementen tekst:AlgemeneToelichting en tekst:ArtikelgewijzeToelichting voor tekst:Toelichting.</xs:documentation>
+    <xs:documentation>- 2019-08-22 - Nieuwe elementen voor Toelichting toegevoegd aan tekst:Vervang, tekst:Verwijder en tekst:VoegToe.</xs:documentation>
+    <xs:documentation>- 2019-07-16 - bij agAlgemeen anyAttribute in een andere - niet imop - Namespace toegevoegd. Kan worden gebruikt voor met name een 'class' attribuut voor bijvoorbeeld
+      TPOD-namespace. processContents op lax. </xs:documentation>
+    <xs:documentation>- 2019-07-16 - @class verwijderd uit agAlgemeen.</xs:documentation>
+    <xs:documentation>- 2019-07-10 - Toegevoegd element tekst:Kadertekst, kan worden gebruikt binnen het 'tekst:Inhoud' element. element.</xs:documentation>
+    <xs:documentation>- 2019-07-10 - Toegevoegd element tekst:Formule om de diverse verschijningsvormen van formules te kunnen duiden, kan worden gebruikt binnen het tekst:Inhoud
+      element.</xs:documentation>
+    <xs:documentation>- 2019-07-10 - De waarde voor Schemaversie wordt gevalideerd met een pattern, zonder minor versies (zodat deze waarde niet afhankelijk is van non-breaking
+      changes.</xs:documentation>
+    <xs:documentation>- 2019-07-03 - AKN attributen verplaatst van element tekst:Ondertekening naar tekst:Sluiting.</xs:documentation>
+    <xs:documentation>- 2019-07-03 - Attributen @spanname, @thscope en enumeratie verwijderd voor element 'tekst:entry'. Attribuut is niet CALS.</xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="https://standaarden.overheid.nl/stop/imop/data/"
+    schemaLocation="imop-data.xsd"/>
+  <!--  ELEMENTEN -->
+  <!-- ROOT -->
+  <xs:element name="Besluit">
+    <xs:annotation>
+      <xs:documentation>Root element - voor regelingen en wijzigingen daarop voor besluiten die door bevoegd gezag aan LVBB worden gestuurd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="tekst:mgRegelingBesluit"/>
+        <xs:element minOccurs="0" ref="tekst:Nawerk"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie"/>
+    </xs:complexType>
+    <!--  -->
+    <xs:unique name="uniekEid-Besluit">
+      <xs:annotation>
+        <xs:documentation>Alle eId's voor een Besluit moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*/*/*"/>
+      <xs:field xpath="@eId"/>
+    </xs:unique>
+    <!--  -->
+    <xs:unique name="uniekWid-Besluit">
+      <xs:annotation>
+        <xs:documentation>Alle wId's voor een Besluit moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*/*/*"/>
+      <xs:field xpath="@wId"/>
+    </xs:unique>
+  </xs:element>
+  <!--  -->
+  <xs:element name="OfficielePublicatie">
+    <xs:annotation>
+      <xs:documentation>Root element - voor Officiële Publicaties die door LVBB worden gemaakt.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="tekst:mgBladen"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie"/>
+    </xs:complexType>
+    <!--  -->
+    <xs:unique name="uniekEid-OP">
+      <xs:annotation>
+        <xs:documentation>Alle eId's voor een OfficielePublicatie moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor
+          nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@eId"/>
+    </xs:unique>
+    <!--  -->
+    <xs:unique name="uniekWid-OP">
+      <xs:annotation>
+        <xs:documentation>Alle wId's voor een OfficielePublicatie moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor
+          nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@wId"/>
+    </xs:unique>
+  </xs:element>
+  <!--  -->
+  <xs:element name="RegelingVersie">
+    <xs:annotation>
+      <xs:documentation>Root element - voor volledige regeling versies zonder datum inwerkingtreding die door LVBB worden gemaakt.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="data:ExpressionIdentificatie"/>
+        <xs:element maxOccurs="1" minOccurs="1" name="Regeling">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" ref="tekst:RegelingOpschrift"/>
+              <xs:element minOccurs="0" ref="tekst:Aanhef"/>
+              <xs:element ref="tekst:Lichaam"/>
+              <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+              <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="tekst:Bijlage"/>
+                <xs:element ref="tekst:Toelichting"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie"/>
+    </xs:complexType>
+    <!--  -->
+    <xs:unique name="uniekEid-RegelinVersie">
+      <xs:annotation>
+        <xs:documentation>Alle eId's voor een RegelingVersie moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@eId"/>
+    </xs:unique>
+    <!--  -->
+    <xs:unique name="uniekWid-RegelingVersie">
+      <xs:annotation>
+        <xs:documentation>Alle wId's voor een RegelingVersie moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@wId"/>
+    </xs:unique>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Toestand">
+    <xs:annotation>
+      <xs:documentation>Root element - voor geconsolideerde regelingen die door LVBB worden gemaakt. Heeft altijd een datum inwerkingtreding.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="data:ExpressionIdentificatie"/>
+        <xs:element maxOccurs="1" minOccurs="1" name="Regeling">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" ref="tekst:RegelingOpschrift"/>
+              <xs:element minOccurs="0" ref="tekst:Aanhef"/>
+              <xs:element ref="tekst:Lichaam"/>
+              <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+              <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="tekst:Bijlage"/>
+                <xs:element ref="tekst:Toelichting"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="data:agSchemaVersie"/>
+    </xs:complexType>
+    <!--  -->
+    <xs:unique name="uniekEid-Toestand">
+      <xs:annotation>
+        <xs:documentation>Alle eId's voor een Toestand moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@eId"/>
+    </xs:unique>
+    <!--  -->
+    <xs:unique name="uniekWid-Toestand">
+      <xs:annotation>
+        <xs:documentation>Alle wId's voor een Toestand moeten uniek zijn. Met deze constructie wordt dat gevalideerd door de XML-parser, geen andere mechanismen voor nodig.</xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//*"/>
+      <xs:field xpath="@wId"/>
+    </xs:unique>
+  </xs:element>
+  <!-- EINDE ROOT -->
+  <!-- PUBLICATIES -->
+  <xs:element name="Staatscourant">
+    <xs:annotation>
+      <xs:documentation>Een publicatie in de Staatscourant. Mag niet worden gebruikt als bundeling van meerdere publicaties die samen een Staatscourant vormen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Staatsblad">
+    <xs:annotation>
+      <xs:documentation>Een in het Staatsblad gepubliceerde regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Gemeenteblad">
+    <xs:annotation>
+      <xs:documentation>Een in het Gemeenteblad gepubliceerde regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Provincieblad">
+    <xs:annotation>
+      <xs:documentation>Een in het Provinciaal blad gepubliceerde regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Waterschapsblad">
+    <xs:annotation>
+      <xs:documentation>Een in een Waterschapsblad gepubliceerde regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="BladGR">
+    <xs:annotation>
+      <xs:documentation>Een in een publicatie van een gemeente gepubliceerde regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:group ref="tekst:mgBlad"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Bladaanduiding">
+    <xs:annotation>
+      <xs:documentation>De tekstuele duiding van het blad waarin de publicatie wordt geplaatst. Bevat 1 of 2 titelregels.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="2" ref="tekst:Titelregel"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- -->
+  <xs:element name="Titelregel">
+    <xs:annotation>
+      <xs:documentation>De officiele titel en eventuele subtitel voor een publicatie. Bijvoorbeeld: "GEMEENTEBLAD" en in de 2e titelregel "Officiële uitgave van gemeente [...]".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- EINDE PUBLICATIES -->
+  <!-- ELEMENTEN FORMEEL -->
+  <xs:element name="Regeling">
+    <xs:annotation>
+      <xs:documentation>Element 'Regeling' is bedoeld voor documenten waarbij het hoofdbestanddeel (inhoudelijk gezien) wordt gevormd door juridisch authentieke tekst. Gegroepeerd in Artikelen,
+        Hoofdstuk(ken) of andere structuurelementen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="tekst:mgRegelingStructuur"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="NieuweRegeling">
+    <xs:annotation>
+      <xs:documentation>Element 'NieuweRegeling' is bedoeld voor een eerste aanlevering van een nog niet bestaande Regeling waarbij het hoofdbestanddeel (inhoudelijk gezien) wordt gevormd door
+        juridisch authentieke tekst. Gegroepeerd in Artikelen, Hoofdstuk(ken) of andere structuurelementen.</xs:documentation>
+      <xs:documentation>Wanneer 'NieuweRegeling' wordt gebruikt is een 'WijzigBijlage' niet toegestaan.</xs:documentation>
+      <xs:documentation>In het lichaam van een NieuweRegeling, in tegenstelling tot een Regeling, is een WijzigArtikel niet toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="tekst:mgRegelingStructuurConsolidatie"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agNieuwComponent"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Bijlage">
+    <xs:annotation>
+      <xs:documentation>Binnen 'Regeling' bijlage(n) die formeel tot de regeling behoren (bindend zijn). Binnen 'Nawerk' een toelichtende bijlage.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice>
+            <xs:sequence>
+              <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Inhoud"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Divisie"/>
+            </xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+          </xs:choice>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Toelichting">
+    <xs:annotation>
+      <xs:documentation>Binnen 'Regeling': toelichtingen die geconsolideerd worden. Binnen 'Nawerk': een toelichting die NIET geconsolideerd wordt.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Inhoud"/>
+        <xs:choice minOccurs="1">
+          <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" ref="tekst:AlgemeneToelichting"/>
+            <xs:element maxOccurs="1" minOccurs="0" ref="tekst:ArtikelgewijzeToelichting"/>
+          </xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Bijlage"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="AlgemeneToelichting">
+    <xs:annotation>
+      <xs:documentation>Toelichting van algemene strekking - lees: niet artikelsgewijs.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Inhoud"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Divisie"/>
+          </xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="ArtikelgewijzeToelichting">
+    <xs:annotation>
+      <xs:documentation>Toelichting per specifiek onderdeel, met name artikelen - lees: niet algemeen van aard.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Inhoud"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Divisie"/>
+          </xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="FormeleDivisie">
+    <xs:annotation>
+      <xs:documentation>Een FormeleDivisie bevat juridisch authentieke tekst zonder een artikel structuur.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:FormeleInhoud"/>
+            <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:FormeleDivisie"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="FormeleInhoud">
+    <xs:annotation>
+      <xs:documentation>Een FormeleInhoud bevat juridisch authentieke tekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:group ref="tekst:mgBlocksMinimaal"/>
+          <xs:group ref="tekst:mgBlocksVolledig"/>
+          <xs:element ref="tekst:Kadertekst"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Divisie">
+    <xs:annotation>
+      <xs:documentation>Divisie is de recursieve hiërarchische structuur voor niet-regeltekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice>
+            <xs:sequence>
+              <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Inhoud"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Divisie"/>
+            </xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attribute name="soort" type="tekst:wlSoortDivisie"/>
+      <xs:attributeGroup ref="tekst:agReferentie"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Inhoud">
+    <xs:annotation>
+      <xs:documentation>Inhoud is het container element waarbinnen de tekst-objecten zijn gegroepeerd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:group ref="tekst:mgBlocksMinimaal"/>
+        <xs:group ref="tekst:mgBlocksVolledig"/>
+        <xs:element ref="tekst:Kadertekst"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Kadertekst">
+    <xs:annotation>
+      <xs:documentation>Een "kadertekst" bevat doorgaans een nadere toelichtende tekst of een opsomming van ‘feiten’ om het onderwerp van de hoofdtekst nader te kunnen duiden.</xs:documentation>
+      <xs:documentation>Dit element bepaald NIET de wijze van weergeven voor een publicatie.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:group ref="tekst:mgBlocksMinimaal"/>
+          <xs:group ref="tekst:mgBlocksVolledig"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Gereserveerd">
+    <xs:annotation>
+      <xs:documentation>Wanneer een structuur element (Zoals Hoofdstuk, Paragraaf etc. en Bijlage en Divisie) nog geen content heeft, maar al wel is gereserveerd dan wordt dat met dit element
+        aangegeven.</xs:documentation>
+      <xs:documentation>Wanneer Gereserveerd is gebruikt dan is andere inhoud NIET toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="WijzigBijlage">
+    <xs:annotation>
+      <xs:documentation>Binnen een WijzigBijlage worden alle wijzigingen voor een regeling opgenomen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice>
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:RegelingMutatie"/>
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:MaakInitieleRegeling"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="RegelingMutatie">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="tekst:VoegToe"/>
+        <xs:element ref="tekst:Vervang"/>
+        <xs:element ref="tekst:VervangKop"/>
+        <xs:element ref="tekst:Verwijder"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agComponent"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="MaakInitieleRegeling">
+    <xs:annotation>
+      <xs:documentation>Container waarbinnen de volledige tekst voor een nieuwe regeling wordt opgenomen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:RegelingOpschrift"/>
+        <xs:element ref="tekst:Lichaam"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Bijlage"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Toelichting"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agNieuwComponent"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="VervangKop">
+    <xs:annotation>
+      <xs:documentation>Een Kop die in zijn geheel wordt vervangen bij het wijzigen van structuur voor een regeltekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence minOccurs="1">
+          <xs:element minOccurs="0" ref="tekst:Nummer"/>
+          <xs:element minOccurs="0" ref="tekst:Wat"/>
+        </xs:sequence>
+        <xs:element ref="tekst:Kop"/>
+      </xs:sequence>
+      <xs:attribute name="wat"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Verwijder">
+    <xs:annotation>
+      <xs:documentation>De structuur van een fragment van een regeling dat bij wijziging moet worden verwijderd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tekst:Nummer"/>
+          <xs:element minOccurs="0" ref="tekst:Wat"/>
+        </xs:sequence>
+        <xs:choice>
+          <xs:group ref="tekst:mgStructuurRegeling"/>
+          <xs:element ref="tekst:Lichaam"/>
+          <xs:element ref="tekst:Bijlage"/>
+          <xs:element ref="tekst:Toelichting"/>
+          <xs:element ref="tekst:AlgemeneToelichting"/>
+          <xs:element ref="tekst:ArtikelgewijzeToelichting"/>
+          <xs:element ref="tekst:FormeleInhoud"/>
+        </xs:choice>
+        <!--  <xs:element minOccurs="0" ref="tekst:Was"/> -->
+      </xs:sequence>
+      <xs:attribute name="wat" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="VoegToe">
+    <xs:annotation>
+      <xs:documentation>De structuur van een fragment van een regeling dat bij wijziging moet worden toegevoegd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tekst:Nummer"/>
+          <xs:element minOccurs="0" ref="tekst:Wat"/>
+        </xs:sequence>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:group ref="tekst:mgStructuurRegeling"/>
+          <xs:element ref="tekst:Lichaam"/>
+          <xs:element ref="tekst:Bijlage"/>
+          <xs:element ref="tekst:Toelichting"/>
+          <xs:element ref="tekst:AlgemeneToelichting"/>
+          <xs:element ref="tekst:ArtikelgewijzeToelichting"/>
+          <xs:element ref="tekst:FormeleInhoud"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agWijzigLocatie"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Vervang">
+    <xs:annotation>
+      <xs:documentation>De structuur van (een fragment van) een regeling dat bij wijziging een bestaande regeling wordt vervangen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tekst:Nummer"/>
+          <xs:element minOccurs="0" ref="tekst:Wat"/>
+        </xs:sequence>
+        <xs:choice>
+          <xs:group ref="tekst:mgStructuurRegeling"/>
+          <xs:element ref="tekst:Lichaam"/>
+          <xs:element ref="tekst:Bijlage"/>
+          <xs:element ref="tekst:Toelichting"/>
+          <xs:element ref="tekst:AlgemeneToelichting"/>
+          <xs:element ref="tekst:ArtikelgewijzeToelichting"/>
+          <xs:element ref="tekst:FormeleInhoud"/>
+        </xs:choice>
+        <!-- <xs:element minOccurs="0" ref="tekst:Was"/> -->
+      </xs:sequence>
+      <xs:attribute name="wat" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Wat">
+    <xs:annotation>
+      <xs:documentation>Tekstuele beschrijving van de wijziging(en) in een WijzigArtikel of een WijzigLid</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Kop">
+    <xs:annotation>
+      <xs:documentation>Voor het coderen van koppen (als lopende tekst), met drie onderdelen: Opschrift, Nummer, en Label.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:sequence>
+            <xs:element ref="tekst:Label"/>
+            <xs:element minOccurs="0" ref="tekst:Nummer"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="tekst:Nummer"/>
+            <xs:element minOccurs="0" ref="tekst:Label"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="tekst:Opschrift"/>
+        <xs:element maxOccurs="3" minOccurs="0" ref="tekst:Subtitel"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Label">
+    <xs:annotation>
+      <xs:documentation>Het Label voor een kop-structuur, bijvoorbeeld: "Artikel", "Hoofdstuk", "Paragraaf" etc.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Nummer">
+    <xs:annotation>
+      <xs:documentation>Het Nummer voor een kop-structuur, bijvoorbeeld: "1", "3.2", "A" etc. Het plaatsen van een punt "." als laatste karakter wordt afgeraden.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesRegulier"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Opschrift">
+    <xs:annotation>
+      <xs:documentation>Het opschrift (of de titel) voor een kop-structuur.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Subtitel">
+    <xs:annotation>
+      <xs:documentation>Optioneel te plaatsen tweede titel regel in een kop-structuur.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="RegelingOpschrift">
+    <xs:annotation>
+      <xs:documentation>Het formele opschrift (of de titel) voor een besluit of regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Al"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:ID"/>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Aanhef">
+    <xs:annotation>
+      <xs:documentation>De formele begin tekst voor een besluit.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element ref="tekst:Al"/>
+          <xs:element ref="tekst:Lijst"/>
+        </xs:choice>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Considerans"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Afkondiging"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Considerans">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element ref="tekst:Al"/>
+          <xs:element ref="tekst:Lijst"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Afkondiging">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:element ref="tekst:Al"/>
+        <xs:element ref="tekst:Lijst"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Groep">
+    <xs:annotation>
+      <xs:documentation>Groepering van bijeen te houden elementen in een tekst, zonder tussenliggende witruimte. Via '@class' kan een vrije waarde worden toegekend, o.m. voor
+        visualisatie.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:group ref="tekst:mgGroepStructuur"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Lijst">
+    <xs:annotation>
+      <xs:documentation>Een Lijst is een recursieve structuur. Indien de lijst-items worden voorafgegaan door een symbool of nummering moet deze expliciet in het lijst-item (Li) worden opgenomen als
+        een LiNummer.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Lijstaanhef"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element ref="tekst:Li"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="tekst:Lijstsluiting"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="tekst:wlTypeLijst" use="required">
+        <xs:annotation>
+          <xs:documentation>Waarde 'expliciet' is de meest voorkomende situatie.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Lijstaanhef">
+    <xs:annotation>
+      <xs:documentation>Tekst waarbinnen de betekenis of het doel van de opsomming wordt beschreven. Maximaal 1 alinea die moet eindigen op ":".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Li">
+    <xs:annotation>
+      <xs:documentation>Onderdeel voor een Lijst. Kan weer een Lijst kan bevatten, waardoor de lijststructuur recursief wordt.</xs:documentation>
+      <xs:documentation>Gebruik van tekst:table binnen een Li is toegestaan vanwege legacy waarin dit voorkomt. Voor nieuwe content niet gebruiken!</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:LiNummer"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element ref="tekst:Al"/>
+          <xs:element ref="tekst:Figuur"/>
+          <xs:element ref="tekst:Lijst"/>
+          <xs:element ref="tekst:Begrippenlijst"/>
+          <xs:element ref="tekst:table"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="LiNummer">
+    <xs:annotation>
+      <xs:documentation>Het nummer of het af te beelden symbool voor een Lijst. Gebruikte nummering of symbool is altijd hetzelfde op hetzelfde niveau van de Lijst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+        <xs:element ref="tekst:sup"/>
+        <xs:element ref="tekst:sub"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Lijstsluiting">
+    <xs:annotation>
+      <xs:documentation>Optioneel afsluitende alinea voor een Lijst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="VerwijderdeTekst">
+    <xs:annotation>
+      <xs:documentation>Groepering voor tekst in een regeltekst die is verwijderd bij een wijziging.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="NieuweTekst">
+    <xs:annotation>
+      <xs:documentation>Groepering voor tekst in een regeltekst die wordt geplaatst bij een wijziging.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Citaat">
+    <xs:annotation>
+      <xs:documentation>Citaat is een letterlijke overname van tekst uit een andere publicatie. Aanhalingstekens maken geen onderdeel uit van de tekst van een citaat; deze worden
+        gegenereerd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgBlocksMinimaal"/>
+        <xs:group ref="tekst:mgBlocksZonderCitaat"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agCitaat"/>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Ondertekening">
+    <xs:annotation>
+      <xs:documentation>De formele ondertekening voor een besluit.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Al"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Lichaam">
+    <xs:annotation>
+      <xs:documentation>Lichaam is het container element voor artikel(en), FormeleInhoud en eventuele groeperende niveau's ertussenin (Hoofdstuk, Paragraaf, FormeleDivisie, etc.).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="tekst:mgLichaamStructuur"/>
+        <xs:element minOccurs="0" ref="tekst:Redactioneel"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Boek">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Boek' in een Regeling. Volgens de AvR zijn alleen "Hoofdstuk" en "Deel" toegestaan als lagere niveau's.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Deel">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Deel' in een Regeling. Volgens de AvR is alleen "Hoofdstuk" als lagere niveau toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="1">
+            <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Hoofdstuk">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Hoofdstuk' in een Regeling. Volgens de AvR zijn alleen "Afdeling", "Paragraaf"; "Titel" en "Artikel" als lagere niveau's toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="0">
+            <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Afdeling">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Afdeling' in een Regeling. Volgens de AvR is alleen "Paragraaf" als lager niveau toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="0">
+            <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Titel">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Titel' in een Regeling. Volgens de AvR is alleen "Afdeling" als lager niveau toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="0">
+            <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Paragraaf">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'paragraaf' in een Regeling. Volgens de AvR is alleen "Artikel" als lager niveau toegestaan.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="1" minOccurs="0">
+            <xs:element maxOccurs="unbounded" ref="tekst:Subparagraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Subsubparagraaf"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Artikel"/>
+          </xs:choice>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tekst:Redactioneel"/>
+            <xs:element ref="tekst:WijzigArtikel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Subparagraaf">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Subparagraaf' in een Regeling. Volgens de AvR een niet toegestaan niveau. Aanbeveling is alleen "Subsubparagraaf" of "Artikel" te gebruiken als lagere
+        niveau's.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element ref="tekst:Subsubparagraaf"/>
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Subsubparagraaf">
+    <xs:annotation>
+      <xs:documentation>Representeert een 'Subsubparagraaf' in een Regeling. Volgens de AvR een niet toegestaan niveau. Aanbeveling is alleen "Artikel" te gebruiken als lager
+        niveau.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="1">
+            <xs:element ref="tekst:Artikel"/>
+            <xs:element ref="tekst:Redactioneel"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Artikel">
+    <xs:annotation>
+      <xs:documentation>'Artikel' is het primaire niveau voor een regeling (regeltekst).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Gereserveerd"/>
+          <xs:choice minOccurs="1">
+            <xs:element maxOccurs="unbounded" ref="tekst:Lid"/>
+            <xs:element ref="tekst:Inhoud"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Lid">
+    <xs:annotation>
+      <xs:documentation>'Lid' is als component voor 'Artikel' het laagste niveau voor een regeltekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:LidNummer"/>
+        <xs:element ref="tekst:Inhoud"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="LidNummer">
+    <xs:annotation>
+      <xs:documentation>De nummering voor artikelleden.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:VerwijderdeTekst"/>
+        <xs:element ref="tekst:NieuweTekst"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="WijzigArtikel">
+    <xs:annotation>
+      <xs:documentation>Wijzigingen voor een besluit of regeling. Tekstuele beschrijving van een of meer wijzigingsinstructies. Specificatie van de wijzigingen door gebruik te maken van de elementen
+        'Vervang'; 'Voegtoe'; 'Verwijder' of in een 'WijzigBijlage'.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:element minOccurs="0" ref="tekst:Wat"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:WijzigLid"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="WijzigLid">
+    <xs:annotation>
+      <xs:documentation>Een of meer wijzigingsinstructie(s) binnen het besluit of regeling aangeduid in het bovenliggende 'WijzigArtikel'.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:LidNummer"/>
+        <xs:element minOccurs="0" ref="tekst:Wat"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Redactioneel">
+    <xs:annotation>
+      <xs:documentation>Notities of opmerkingen die geen onderdeel van de (formele-)tekst of structuur uitmaken. Het wordt ten sterkste afgeraden hier gebruik van te maken. Deze tekst maakt geen
+        onderdeel uit van een Besluit of Regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:group ref="tekst:mgBlocksMinimaal"/>
+        <xs:group ref="tekst:mgBlocksVolledig"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Sluiting">
+    <xs:annotation>
+      <xs:documentation>Met het slotformulier, dagtekening en afsluitende (procedurele) tekst over de Regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element ref="tekst:Groep"/>
+          <xs:element ref="tekst:Al"/>
+          <xs:element ref="tekst:Slotformulering"/>
+          <xs:element ref="tekst:Dagtekening"/>
+        </xs:choice>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Ondertekening"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Slotformulering">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:element ref="tekst:Al"/>
+        <xs:element ref="tekst:Groep"/>
+        <xs:element ref="tekst:Lijst"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Dagtekening">
+    <xs:annotation>
+      <xs:documentation>Plaats en datum van ondertekening.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Al"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Nawerk">
+    <xs:annotation>
+      <xs:documentation>Groepering van onderdelen die niet tot de Regeling behoren, zoals Nota van Toelichting, Inhoudsopgave, Bezwaar etc. Onderdelen binnen Nawerk worden niet
+        geconsolideerd.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Motivering"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Toelichting"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="tekst:Inhoudsopgave"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Bijlage"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:NawerkContainer"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Motivering">
+    <xs:annotation>
+      <xs:documentation>Een Motivering binnen een Nawerk geeft de overwegingen aan die ten grondslag liggen aan de wijzigingen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:Kop"/>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" ref="tekst:Inhoud"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Divisie"/>
+          </xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Divisie"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:Bijlage"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Inhoudsopgave">
+    <xs:annotation>
+      <xs:documentation>De Inhoudsopgave voor een Besluit of Regeling. Volgens de AvR is een Inhoudsopgave GEEN onderdeel van de Regeling.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:Kop"/>
+        <xs:choice>
+          <xs:element ref="tekst:table"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Al"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="NawerkContainer">
+    <xs:annotation>
+      <xs:documentation>Generieke groepering voor Nawerk teksten. Met het attribuut '@soort' kan de rol van het nawerk worden aangegeven.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tekst:Inhoud"/>
+      </xs:sequence>
+      <xs:attribute name="soort" type="tekst:wlSoortNawerk" use="required"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- EINDE ELEMENTEN FORMEEL -->
+  <!-- TABLE CALS -->
+  <xs:element name="table">
+    <xs:annotation>
+      <xs:documentation>Een tabel (conform CALS Exchange Table Model).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:title"/>
+        <xs:element maxOccurs="unbounded" ref="tekst:tgroup"/>
+        <xs:element minOccurs="0" ref="tekst:Bron"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agTable"/>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Bron">
+    <xs:annotation>
+      <xs:documentation>Als onderschrift bij een tabel of illustratie te gebruiken waarin kan worden aangegeven welke bron voor de tabel is gebruikt.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="tgroup">
+    <xs:annotation>
+      <xs:documentation>Groepering van rijen in een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:colspec"/>
+        <xs:element minOccurs="0" ref="tekst:thead"/>
+        <xs:element ref="tekst:tbody"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agTableGroup"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="thead">
+    <xs:annotation>
+      <xs:documentation>Tabel rijen die de specificatie geven van de inhoud van de kolommen in de tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tekst:row"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agTableHead"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="tbody">
+    <xs:annotation>
+      <xs:documentation>De volledige inhoud voor een tabel na een header.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tekst:row"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agTableBody"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="title">
+    <xs:annotation>
+      <xs:documentation>Titel voor een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesRegulier"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="colspec">
+    <xs:annotation>
+      <xs:documentation>Specificaties voor het weergeven van een kolom binnen een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attributeGroup ref="tekst:agColspec"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="row">
+    <xs:annotation>
+      <xs:documentation>Een rij in een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tekst:entry"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agTableRow"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="entry">
+    <xs:annotation>
+      <xs:documentation>Een cel binnen een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgBlocksZonderTable"/>
+        <xs:group ref="tekst:mgBlocksMinimaal"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agTableEntry"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- EINDE TABLE CALS -->
+  <!-- TEKST CONTAINERS -->
+  <xs:element name="Al">
+    <xs:annotation>
+      <xs:documentation>Alinea bevat de lopende tekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Begrippenlijst">
+    <xs:annotation>
+      <xs:documentation>Een lijst met definities voor begrippen.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tekst:Begrip"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Begrip">
+    <xs:annotation>
+      <xs:documentation>Een Begrip is de combinatie van een term en de bijbehorende definitie.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:LiNummer"/>
+        <xs:element ref="tekst:Term"/>
+        <xs:element ref="tekst:Definitie"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Term">
+    <xs:annotation>
+      <xs:documentation>Het begrip of de term die nader wordt gedefinieerd in een begrippenlijst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesRegulier"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Definitie">
+    <xs:annotation>
+      <xs:documentation>De definitie van een term in een begrippenlijst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="tekst:Al"/>
+        <xs:element ref="tekst:Lijst"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Figuur">
+    <xs:annotation>
+      <xs:documentation>Figuur is een container voor illustraties, inclusief bijbehorende gegevens voor weergave.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Titel">
+          <xs:complexType mixed="true">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:group ref="tekst:mgInlinesCompleet"/>
+            </xs:choice>
+            <xs:attributeGroup ref="tekst:agWijzigactie"/>
+            <xs:attributeGroup ref="tekst:agAlgemeen"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="tekst:Illustratie"/>
+        <xs:element minOccurs="0" ref="tekst:Bijschrift"/>
+        <xs:element minOccurs="0" ref="tekst:Bron"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Formule">
+    <xs:annotation>
+      <xs:documentation>Formule is een container voor de diverse vormen van formules, als tekst, of afbeelding. De tekstuele variant heeft een opbouw vergelijkbaar met een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="1" minOccurs="1">
+          <xs:element maxOccurs="unbounded" ref="tekst:Formuleregel"/>
+          <xs:element ref="tekst:Illustratie"/>
+        </xs:choice>
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tekst:Bijschrift"/>
+          <xs:element minOccurs="0" ref="tekst:Bron"/>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Formuleregel">
+    <xs:annotation>
+      <xs:documentation>Een formuleregel ia een 'rij' als in een tabel waarbinnen Formuletekst kan worden geplaatst op dezelfde wijze als een 'entry' in een tabel.</xs:documentation>
+      <xs:documentation>Alle 'Formuleregel' elementen binnen een Formule moeten een zelfde aantal Formuletekst elementen bevatten.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="tekst:Formuletekst"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Formuletekst">
+    <xs:annotation>
+      <xs:documentation>Een formuletekst is vergelijkbaar met een 'cel' en geplaatst zoals in een tabel binnen een Formuleregel, vergelijkbaar met een 'row' in een tabel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:sup"/>
+        <xs:element ref="tekst:sub"/>
+        <xs:element ref="tekst:InlineTekstAfbeelding"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="InlineTekstAfbeelding">
+    <xs:annotation>
+      <xs:documentation>Een afbeelding dat in lopende tekst geplaatst moet worden (als een object). Bevat reeks van karakters of symbolen die niet op andere wijze kunnen worden
+        afgebeeld.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attributeGroup ref="tekst:agInlineTekstAfbeelding"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Illustratie">
+    <xs:annotation>
+      <xs:documentation>Verwijzing naar een afbeelding (als een object).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attributeGroup ref="tekst:agIllustratie"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Bijschrift">
+    <xs:annotation>
+      <xs:documentation>Een verklarend bijschrift bij een illustratie of figuur.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesCompleet"/>
+      </xs:choice>
+      <xs:attribute name="locatie" type="tekst:wlPositieBijschrift" use="required">
+        <xs:annotation>
+          <xs:documentation>Plaatsing van het bijschrift, als default is "onder" te gebruiken.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Tussenkop">
+    <xs:annotation>
+      <xs:documentation>Tussenkop is een niet-hiërarchische kop die geplaatst kan worden in lopende tekst.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesRegulier"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- EINDE TEKST CONTAINERS -->
+  <!-- INLINES -->
+  <xs:element name="i">
+    <xs:annotation>
+      <xs:documentation>Een tekstfragment binnen een alinea dat cursief moet worden weergegeven.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:b"/>
+        <xs:element ref="tekst:u"/>
+        <xs:element ref="tekst:strong"/>
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+        <xs:group ref="tekst:mgInlineReferenties"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="b">
+    <xs:annotation>
+      <xs:documentation>Een tekstfragment binnen een alinea dat vet moet worden weergegeven.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:i"/>
+        <xs:element ref="tekst:u"/>
+        <xs:element ref="tekst:strong"/>
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+        <xs:group ref="tekst:mgInlineReferenties"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="u">
+    <xs:annotation>
+      <xs:documentation>Een tekstfragment binnen een alinea dat onderstreept moet worden weergegeven.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:b"/>
+        <xs:element ref="tekst:i"/>
+        <xs:element ref="tekst:strong"/>
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+        <xs:group ref="tekst:mgInlineReferenties"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="strong">
+    <xs:annotation>
+      <xs:documentation>Een tekstfragment binnen een alinea dat met extra nadruk moet worden weergegeven.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:b"/>
+        <xs:element ref="tekst:u"/>
+        <xs:element ref="tekst:i"/>
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+        <xs:group ref="tekst:mgInlineNoten"/>
+        <xs:group ref="tekst:mgInlinesWijzigingen"/>
+        <xs:group ref="tekst:mgInlineReferenties"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="sup" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Een karakter dat als superieur moet worden weergegeven (boven de x-lijn van de tekst).</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <!--  -->
+  <xs:element name="sub" type="xs:string">
+    <xs:annotation>
+      <xs:documentation>Een karakter dat als inferieur moet worden weergegeven (onder de x-lijn van de tekst).</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <!--  -->
+  <xs:element name="abbr">
+    <xs:annotation>
+      <xs:documentation>Een afkorting in tekst, waarbij de betekenis van de afkorting in het attribuut 'title' kan worden opgegeven. </xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="title" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="ExtRef">
+    <xs:annotation>
+      <xs:documentation>ExtRef is een externe verwijzing. Het verplichte attribuut 'doel' bevat de URL of locatie van een document of een positie binnen een document.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agExtrefDoelSoort"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Noot">
+    <xs:annotation>
+      <xs:documentation>Een Noot waarnaar vanuit tekst wordt verwezen. Typering voor plaatsing van de Noot kan worden opgegeven met behulp van het attribuut 'type'.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tekst:NootNummer"/>
+        <xs:choice maxOccurs="unbounded" minOccurs="1">
+          <xs:element ref="tekst:Al"/>
+          <xs:element ref="tekst:Lijst"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="type" type="tekst:wlTypeNoot" use="required"/>
+      <xs:attribute name="id" type="xs:ID" use="required"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="NootNummer" type="tekst:dtNootNummerLengte">
+    <xs:annotation>
+      <xs:documentation>Nummeraanduiding voor een Noot.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <!--  -->
+  <xs:element name="Nootref">
+    <xs:annotation>
+      <xs:documentation>Referentie naar een voet- of eindnoot; Alleen toegestaan binnen een table. De noot moet zich binnen dezelfde tabel bevinden.</xs:documentation>
+      <xs:documentation>Voor validatie: schematron: imopValidatieHulp.sch</xs:documentation>
+      <xs:appinfo>
+        <include href="imop.sch" xmlns="http://purl.oclc.org/dsdl/schematron"/>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="refid" type="xs:IDREF" use="required"/>
+      <xs:attributeGroup ref="tekst:agWijzigactie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="IntRef">
+    <xs:annotation>
+      <xs:documentation>IntRef is een interne verwijzing binnen een document. De verplichte eigenschap 'doel' bevat de identificatie van een element binnen hetzelfde document.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agDoelReferentie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="ExtIoRef">
+    <xs:annotation>
+      <xs:documentation>ExtIoRef wordt gebruikt om een externe verwijzing naar een informatie-object te coderen dat niet in hetzelfde document aanwezig is.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agDoelReferentie"/>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="IntIoRef">
+    <xs:annotation>
+      <xs:documentation>IntIoRef wordt gebruikt om een verwijzing naar een informatie-object te coderen dat in hetzelfde document aanwezig is. Bevat altijd een join-identifier als
+        doel.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:group ref="tekst:mgInlinesZonderKinderen"/>
+      </xs:choice>
+      <xs:attributeGroup ref="tekst:agAlgemeen"/>
+      <xs:attributeGroup ref="tekst:agAKN"/>
+      <xs:attributeGroup ref="tekst:agDoelReferentie"/>
+    </xs:complexType>
+  </xs:element>
+  <!--  -->
+  <xs:element name="br">
+    <xs:annotation>
+      <xs:documentation>Break, een regelovergang binnen een alinea.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType/>
+  </xs:element>
+  <!-- EINDE INLINES -->
+  <!-- EINDE ELEMENTEN -->
+  <!-- GROEPEN -->
+  <xs:group name="mgRegelingBesluit">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="data:ExpressionIdentificatie"/>
+      <xs:choice maxOccurs="1" minOccurs="1">
+        <xs:element maxOccurs="1" minOccurs="1" name="Regeling">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" ref="tekst:RegelingOpschrift"/>
+              <xs:element minOccurs="0" ref="tekst:Aanhef"/>
+              <xs:element ref="tekst:Lichaam"/>
+              <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:WijzigBijlage"/>
+              <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="tekst:Bijlage"/>
+                <xs:element ref="tekst:Toelichting"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element maxOccurs="1" minOccurs="1" ref="tekst:NieuweRegeling"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgRegelingStructuur">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="tekst:RegelingOpschrift"/>
+      <xs:element minOccurs="0" ref="tekst:Aanhef"/>
+      <xs:element ref="tekst:Lichaam"/>
+      <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" ref="tekst:WijzigBijlage"/>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:Bijlage"/>
+        <xs:element ref="tekst:Toelichting"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgRegelingStructuurConsolidatie">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="tekst:RegelingOpschrift"/>
+      <xs:element minOccurs="0" ref="tekst:Aanhef"/>
+      <xs:element ref="tekst:Lichaam"/>
+      <xs:element minOccurs="0" ref="tekst:Sluiting"/>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+        <xs:element ref="tekst:Bijlage"/>
+        <xs:element ref="tekst:Toelichting"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgLichaamStructuur">
+    <xs:sequence>
+      <xs:choice minOccurs="1">
+        <xs:choice maxOccurs="unbounded">
+          <xs:element maxOccurs="unbounded" ref="tekst:FormeleDivisie"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:FormeleInhoud"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+          <xs:element maxOccurs="unbounded" ref="tekst:Artikel"/>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="tekst:WijzigArtikel"/>
+            <xs:element maxOccurs="unbounded" ref="tekst:Artikel"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBladen">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="data:ExpressionIdentificatie"/>
+      <xs:choice maxOccurs="1">
+        <xs:element ref="tekst:Staatscourant"/>
+        <xs:element ref="tekst:Staatsblad"/>
+        <xs:element ref="tekst:Gemeenteblad"/>
+        <xs:element ref="tekst:Provincieblad"/>
+        <xs:element ref="tekst:Waterschapsblad"/>
+        <xs:element ref="tekst:BladGR"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBlad">
+    <xs:sequence>
+      <xs:element ref="tekst:Bladaanduiding"/>
+      <xs:element maxOccurs="1" ref="tekst:Regeling"/>
+      <xs:element minOccurs="0" ref="tekst:Nawerk"/>
+    </xs:sequence>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlineReferenties">
+    <xs:choice>
+      <xs:element ref="tekst:ExtRef"/>
+      <xs:element ref="tekst:IntRef"/>
+      <xs:element ref="tekst:ExtIoRef"/>
+      <xs:element ref="tekst:IntIoRef"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlinesWijzigingen">
+    <xs:choice>
+      <xs:element ref="tekst:VerwijderdeTekst"/>
+      <xs:element ref="tekst:NieuweTekst"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlinesCompleet">
+    <xs:choice>
+      <xs:element ref="tekst:i"/>
+      <xs:element ref="tekst:b"/>
+      <xs:element ref="tekst:u"/>
+      <xs:element ref="tekst:sub"/>
+      <xs:element ref="tekst:sup"/>
+      <xs:element ref="tekst:strong"/>
+      <xs:element ref="tekst:abbr"/>
+      <xs:element ref="tekst:br"/>
+      <xs:element ref="tekst:Nootref"/>
+      <xs:element ref="tekst:Noot"/>
+      <xs:element ref="tekst:VerwijderdeTekst"/>
+      <xs:element ref="tekst:NieuweTekst"/>
+      <xs:element ref="tekst:ExtRef"/>
+      <xs:element ref="tekst:IntRef"/>
+      <xs:element ref="tekst:ExtIoRef"/>
+      <xs:element ref="tekst:IntIoRef"/>
+      <xs:element ref="tekst:InlineTekstAfbeelding"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlinesZonderKinderen">
+    <xs:choice>
+      <xs:element ref="tekst:sub"/>
+      <xs:element ref="tekst:sup"/>
+      <xs:element ref="tekst:abbr"/>
+      <xs:element ref="tekst:br"/>
+      <xs:element ref="tekst:InlineTekstAfbeelding"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlinesRegulier">
+    <xs:choice>
+      <xs:element ref="tekst:i"/>
+      <xs:element ref="tekst:b"/>
+      <xs:element ref="tekst:u"/>
+      <xs:element ref="tekst:strong"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgInlineNoten">
+    <xs:choice>
+      <xs:element ref="tekst:Nootref"/>
+      <xs:element ref="tekst:Noot"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgGroepStructuur">
+    <xs:choice>
+      <xs:element ref="tekst:Al"/>
+      <xs:element ref="tekst:Lijst"/>
+      <xs:element ref="tekst:Figuur"/>
+      <xs:element ref="tekst:Formule"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBlocksMinimaal">
+    <xs:choice>
+      <xs:element ref="tekst:Al"/>
+      <xs:element ref="tekst:Groep"/>
+      <xs:element ref="tekst:Begrippenlijst"/>
+      <xs:element ref="tekst:Lijst"/>
+      <xs:element ref="tekst:Figuur"/>
+      <xs:element ref="tekst:Tussenkop"/>
+      <xs:element ref="tekst:Formule"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBlocksVolledig">
+    <xs:choice>
+      <xs:element ref="tekst:Citaat"/>
+      <xs:element ref="tekst:table"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBlocksZonderCitaat">
+    <xs:choice>
+      <xs:element ref="tekst:table"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgBlocksZonderTable">
+    <xs:choice>
+      <xs:element ref="tekst:Citaat"/>
+    </xs:choice>
+  </xs:group>
+  <!--  -->
+  <xs:group name="mgStructuurRegeling">
+    <xs:choice>
+      <xs:element maxOccurs="unbounded" ref="tekst:Afdeling"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Artikel"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Boek"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Deel"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Hoofdstuk"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Paragraaf"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Subparagraaf"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Subsubparagraaf"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:Titel"/>
+      <xs:element maxOccurs="unbounded" ref="tekst:FormeleDivisie"/>
+    </xs:choice>
+  </xs:group>
+  <!-- EINDE GROEPEN -->
+  <!-- ATTRIBUTEN -->
+  <!--  -->
+  <xs:attributeGroup name="agAlgemeen">
+    <xs:anyAttribute namespace="##other" processContents="lax"/>
+  </xs:attributeGroup>
+  <!-- ATTRIBUTEN CALS TABLE -->
+  <xs:attributeGroup name="agTable">
+    <xs:attribute name="frame" type="tekst:wlTableFrame"/>
+    <xs:attribute name="colsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="rowsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="pgwide" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="tabstyle" type="xs:NMTOKEN"/>
+    <xs:attribute name="orient" type="tekst:wlTableOrientatie"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agTableGroup">
+    <xs:attribute name="cols" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="colsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="rowsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="char"/>
+    <xs:attribute name="charoff" type="xs:positiveInteger"/>
+    <xs:attribute name="align" type="tekst:wlTableAlignHorizontal" use="required">
+      <xs:annotation>
+        <xs:documentation>Waarde 'left' kan gebruikt worden als de default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agTableHead">
+    <xs:attribute name="valign" type="tekst:wlTableAlignVertical" use="required">
+      <xs:annotation>
+        <xs:documentation>De waarde 'bottom' kan gebruikt worden als default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agTableBody">
+    <xs:attribute name="valign" type="tekst:wlTableAlignVertical" use="required">
+      <xs:annotation>
+        <xs:documentation>De waarde 'top' kan gebruikt worden als default.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agColspec">
+    <xs:attribute name="colname" type="xs:NMTOKEN"/>
+    <xs:attribute name="colnum" type="xs:NMTOKEN"/>
+    <xs:attribute name="colsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="rowsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="colwidth"/>
+    <xs:attribute name="align" type="tekst:wlTableAlignHorizontal"/>
+    <xs:attribute name="char"/>
+    <xs:attribute name="charoff" type="xs:positiveInteger"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agTableRow">
+    <xs:attribute name="rowsep" type="xs:NMTOKEN"/>
+    <xs:attribute name="valign" type="tekst:wlTableAlignVertical"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agTableEntry">
+    <xs:attribute name="colname" type="xs:NMTOKEN"/>
+    <xs:attribute name="namest" type="xs:NMTOKEN"/>
+    <xs:attribute name="nameend" type="xs:NMTOKEN"/>
+    <xs:attribute name="morerows" type="xs:positiveInteger"/>
+    <xs:attribute name="colsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="rowsep" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="align" type="tekst:wlTableAlignHorizontal"/>
+    <xs:attribute name="char" type="xs:string"/>
+    <xs:attribute name="charoff" type="xs:positiveInteger"/>
+    <xs:attribute name="valign" type="tekst:wlTableAlignVertical"/>
+    <xs:attribute name="rotate" type="tekst:dtNulOfEen"/>
+  </xs:attributeGroup>
+  <!-- EINDE ATTRIBUTEN CALS TABLE -->
+  <xs:attributeGroup name="agAKN">
+    <xs:attribute name="wId" type="xs:NMTOKEN" use="required"/>
+    <xs:attribute name="eId" type="xs:NMTOKEN" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agComponent">
+    <xs:attribute name="componentnaam" type="tekst:dtComponentnaam" use="required"/>
+    <xs:attribute name="FRBRwork" type="xs:anyURI" use="required"/>
+    <xs:attribute name="was" type="xs:anyURI" use="required"/>
+    <xs:attribute name="wordt" type="xs:anyURI" use="required"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="agNieuwComponent">
+    <xs:attribute name="componentnaam" type="tekst:dtComponentnaam" use="required"/>
+    <xs:attribute name="FRBRwork" type="xs:anyURI" use="required"/>
+    <xs:attribute name="wordt" type="xs:anyURI" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agWijzigactie">
+    <xs:attribute name="wijzigactie" type="tekst:wlWijzigactieElementen" use="optional"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agExtrefDoelSoort">
+    <xs:attribute name="doel" type="xs:anyURI" use="required"/>
+    <xs:attribute name="soort" type="tekst:wlSoortExtrefNotatie" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agCitaat">
+    <xs:attribute name="bron"/>
+    <xs:attribute name="url"/>
+    <xs:attribute name="auteur"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agDoelReferentie">
+    <xs:attribute name="doel" type="xs:anyURI" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agIllustratie">
+    <xs:attribute name="naam" use="required"/>
+    <xs:attribute name="breedte" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="hoogte" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="schaal"/>
+    <xs:attribute name="uitlijning" type="tekst:wlUitlijningIllustratie" use="required"/>
+    <xs:attribute name="kleur" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="formaat" type="tekst:wlFormaatIllustratie" use="required"/>
+    <xs:attribute name="alt"/>
+    <xs:attribute name="dpi" type="xs:positiveInteger" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agInlineTekstAfbeelding">
+    <xs:attribute name="naam" use="required"/>
+    <xs:attribute name="breedte" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="hoogte" type="xs:positiveInteger" use="required"/>
+    <xs:attribute name="schaal"/>
+    <xs:attribute name="kleur" type="tekst:dtNulOfEen"/>
+    <xs:attribute name="formaat" type="tekst:wlFormaatIllustratie" use="required"/>
+    <xs:attribute name="alt"/>
+    <xs:attribute name="dpi" type="xs:positiveInteger" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agWijzigLocatie">
+    <xs:attribute name="doelPositie" type="tekst:wlPositieWijziging" use="required"/>
+    <xs:attribute name="context" type="xs:NMTOKEN" use="required"/>
+  </xs:attributeGroup>
+  <!--  -->
+  <xs:attributeGroup name="agReferentie">
+    <xs:attribute name="ref" type="xs:NMTOKEN"/>
+  </xs:attributeGroup>
+  <!-- EINDE ATTRIBUTEN -->
+  <!-- WAARDELIJSTEN -->
+  <xs:simpleType name="wlPositieWijziging">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="volgtOp"/>
+      <xs:enumeration value="komtVoor"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlFormaatIllustratie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="image/jpeg"/>
+      <xs:enumeration value="image/png"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlKleurIllustratie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="ja"/>
+      <xs:enumeration value="nee"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlUitlijningIllustratie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="start"/>
+      <xs:enumeration value="end"/>
+      <xs:enumeration value="center"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTableFrame">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="top"/>
+      <xs:enumeration value="bottom"/>
+      <xs:enumeration value="topbot"/>
+      <xs:enumeration value="all"/>
+      <xs:enumeration value="sides"/>
+      <xs:enumeration value="none"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTableAlignHorizontal">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="left"/>
+      <xs:enumeration value="right"/>
+      <xs:enumeration value="center"/>
+      <xs:enumeration value="justify"/>
+      <xs:enumeration value="char"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTableAlignVertical">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="top"/>
+      <xs:enumeration value="middle"/>
+      <xs:enumeration value="bottom"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlWijzigactieElementen">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="verwijder"/>
+      <xs:enumeration value="voegtoe"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlSoortDivisie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Titel"/>
+      <xs:enumeration value="Deel"/>
+      <xs:enumeration value="Hoofdstuk"/>
+      <xs:enumeration value="Paragraaf"/>
+      <xs:enumeration value="Onbekend"/>
+      <xs:enumeration value="Afdeling"/>
+      <xs:enumeration value="Boek"/>
+      <xs:enumeration value="Bijlage"/>
+      <xs:enumeration value="ArtikelToelichting"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlSoortExtrefNotatie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="URL"/>
+      <xs:enumeration value="AKN"/>
+      <xs:enumeration value="JOIN"/>
+      <xs:enumeration value="document"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTypeLijst">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="expliciet"/>
+      <xs:enumeration value="ongemarkeerd"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTypeNoot">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="voet"/>
+      <xs:enumeration value="marge"/>
+      <xs:enumeration value="eind"/>
+      <xs:enumeration value="tabel"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTypeIntIoRef">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="vaststellend"/>
+      <xs:enumeration value="verwijzing"/>
+      <xs:enumeration value="inhoud"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlJuridischGebruikKwalitatief">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="exact"/>
+      <xs:enumeration value="indicatief"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlPositieBijschrift">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="boven"/>
+      <xs:enumeration value="onder"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlSoortNawerk">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="bezwaarschrift"/>
+      <xs:enumeration value="voorblad"/>
+      <xs:enumeration value="geschiedenis"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="wlTableOrientatie">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="land"/>
+      <xs:enumeration value="port"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- EINDE WAARDELIJSTEN -->
+  <!-- DATATYPES -->
+  <xs:simpleType name="dtComponentnaam">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-z_]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="dtNulOfEen">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <xs:simpleType name="dtNootNummerLengte">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- EINDE DATATYPES -->
+</xs:schema>

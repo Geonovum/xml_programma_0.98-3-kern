@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="https://standaarden.overheid.nl/stop/imop/data/" version="0.98.1-kern"
+  xmlns:data="https://standaarden.overheid.nl/stop/imop/data/" 
+  xmlns:tekst="https://standaarden.overheid.nl/stop/imop/tekst/"
+  xmlns:geo="https://standaarden.overheid.nl/stop/imop/geo/" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="https://standaarden.overheid.nl/stop/imop/geo/"
+    schemaLocation="imop-geo.xsd" />
+
+  <!--
+  ================================================ 
+    identificatie                                   
+  ================================================ 
+  -->
+  <xs:element name="ExpressionIdentificatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:FRBRWork"/>
+        <xs:element ref="data:FRBRExpression"/>
+        <xs:element ref="data:soortWork"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="WorkIdentificatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:FRBRWork"/>
+        <xs:element ref="data:soortWork"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="FRBRExpression" type="data:dtSTOPidentificatie"/>
+  <xs:element name="FRBRWork" type="data:dtSTOPidentificatie"/>
+  <xs:element name="soortWork" type="data:dtWaardeRef"/>
+
+  <!--
+  ================================================ 
+     Metadata-containers                                   
+  ================================================ 
+  -->
+  <xs:element name="BesluitMetadata">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:afkortingen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eindverantwoordelijke"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:grondslagen"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:informatieobjectRefs"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:maker"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:officieleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:onderwerpen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:overheidsdomein"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:rechtsgebieden"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:redactioneleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:soortBesluit"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:voorkeursafkorting"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="RegelingMetadata">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:afkortingen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eindverantwoordelijke"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:grondslagen"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:maker"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:officieleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:onderwerpen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:overheidsdomein"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:rechtsgebieden"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:redactioneleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:soortRegeling"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:versienummer"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:voorkeursafkorting"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OfficielePublicatieMetadata">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:afkortingen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eindverantwoordelijke"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:gepubliceerdOp"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:grondslagen"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:informatieobjectRefs"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:jaargang"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:maker"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:ondertekendOp"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:onderwerpen"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:publicatieIdentifier"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:publicatieblad"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:publicatienummer"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:publiceert"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:rechtsgebieden"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:redactioneleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:uitgever"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="InformatieObjectMetadata">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:heeftBestanden"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eindverantwoordelijke"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:maker"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:noemer"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:officieleTitel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:publicatieinstructie"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:soortInformatieobject"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <!--
+  ================================================ 
+     Metadata-elementen                                
+  ================================================ 
+  -->
+
+  <!-- "bevoegd gezag" -->
+  <xs:element name="maker" type="data:dtWaardeRef"/>
+  <xs:element name="eindverantwoordelijke" type="data:dtWaardeRef"/>
+  <xs:element name="uitgever" type="data:dtWaardeRef"/>
+
+  <!-- types -->
+  <xs:element name="soortBesluit" type="data:dtWaardeRef"/>
+  <xs:element name="soortRegeling" type="data:dtWaardeRef"/>
+  <xs:element name="soortInformatieobject" type="data:dtWaardeRef"/>
+
+  <!-- titels -->
+  <xs:element name="redactioneleTitel" type="xs:string"/>
+  <xs:element name="officieleTitel" type="xs:string"/>
+  <xs:element name="noemer" type="xs:string"/>
+  <xs:element name="afkortingen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:afkorting"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="afkorting" type="xs:token"/>
+  <xs:element name="voorkeursafkorting" type="xs:token"/>
+
+  <!-- publicatie-metadata -->
+  <xs:element name="publicatieIdentifier" type="xs:token"/>
+  <xs:element name="publicatieblad" type="data:dtWaardeRef"/>
+  <xs:element name="jaargang" type="xs:gYear"/>
+  <xs:element name="publicatienummer" type="xs:token"/>
+  <xs:element name="publiceert" type="data:dtSTOPidentificatie"/>
+  <xs:element name="publicatieinstructie">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="AlleenBekendTeMaken"/>
+        <xs:enumeration value="Informatief"/>
+        <xs:enumeration value="TeConsolideren"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="heeftBestanden">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:heeftBestand"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="heeftBestand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:Bestand"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Bestand">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:bestandsnaam"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:hash"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hash" type="xs:token"/>
+  <xs:element name="bestandsnaam" type="xs:token"/>
+  <xs:element name="gepubliceerdOp" type="xs:date"/>
+  <xs:element name="ondertekendOp" type="xs:date"/>
+
+  <!-- "inhoudelijke" metadata -->
+  <xs:element name="rechtsgebieden">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:rechtsgebied"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rechtsgebied" type="data:dtWaardeRef"/>
+  <xs:element name="overheidsdomein" type="data:dtWaardeRef"/>
+  <xs:element name="onderwerpen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:onderwerp"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="onderwerp" type="data:dtWaardeRef"/>
+
+  <xs:element name="versienummer" type="xs:token"/>
+
+  <!-- relaties -->
+  <xs:element name="TekstReferentie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:uri"/>
+        <xs:element ref="data:label"/>
+        <xs:element minOccurs="0" ref="data:eId"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="grondslagen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:grondslag"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="grondslag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:TekstReferentie"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="informatieobjectRefs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:informatieobjectRef"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="informatieobjectRef" type="data:dtSTOPidentificatie"/>
+  <xs:element name="uri" type="data:dtSTOPidentificatie"/>
+  <xs:element name="label" type="xs:token"/>
+  <xs:element name="eId" type="xs:token"/>
+
+  <!--
+  ================================================ 
+     Procedure en status                                 
+  ================================================ 
+  -->
+  <xs:element name="Procedure">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="data:Procedureverloop"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Statusverlopen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:Statusverloop"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Statusverloop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="data:mgContext"/>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:Status"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Status">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:soortStatus"/>
+        <xs:element ref="data:vanKrachtOp"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="soortStatus" type="data:dtWaardeRef"/>
+  <xs:element name="vanKrachtOp" type="xs:date"/>
+
+  <xs:element name="Procedureverloop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="data:mgContext"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:soortProcedure"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:procedurestappen"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="soortProcedure" type="data:dtWaardeRef"/>
+  <xs:element name="procedurestappen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:Procedurestap"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Procedurestap">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:soortStap"/>
+        <xs:element ref="data:voltooidOp"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:actor"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="soortStap" type="data:dtWaardeRef"/>
+  <xs:element name="voltooidOp" type="xs:date"/>
+  <xs:element name="actor" type="data:dtWaardeRef"/>
+
+  <!--
+  ================================================ 
+     WTI: juridische borging van regelgeving                                
+  ================================================ 
+  -->
+  <xs:element name="InstrumentVersieJuridischeBron">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="data:mgContext"/>
+        <xs:element ref="data:vermeldIn"/>
+        <xs:element ref="data:gepubliceerdIn"/>
+        <xs:element ref="data:ObjectVersieJuridischeBron"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ObjectVersieJuridischeBron">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:vermeldIn"/>
+        <xs:element ref="data:gepubliceerdIn"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="vermeldIn">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="data:JuridischeBronTekstverwijzing"/>
+        <xs:element ref="data:JuridischeBronIOverwijzing"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="JuridischeBronTekstverwijzing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:instrumentversieRef"/>
+        <xs:element ref="data:label"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="JuridischeBronIOverwijzing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:instrumentversieRef"/>
+        <xs:element ref="data:label"/>
+        <xs:element ref="data:VaststellingsContext"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="instrumentversieRef" type="data:dtSTOPidentificatie"/>
+
+  <xs:element name="gepubliceerdIn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:OfficielePublicatieVerwijzing"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="OfficielePublicatieVerwijzing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:publicatie"/>
+        <xs:element ref="data:label"/>
+        <xs:element ref="data:url"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publicatie" type="data:dtSTOPidentificatie"/>
+  <xs:element name="url" type="xs:anyURI"/>
+
+  <xs:element name="VaststellingsContext"/>
+
+  <!--
+  ================================================ 
+     Consolidatie-informatie in Besluit                            
+  ================================================ 
+  -->
+  <xs:element name="BesluitDoel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:BeoogdeRegelgeving"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:Tijdstempels"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Tijdstempels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:Tijdstempel"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BeoogdeRegelgeving">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:BeoogdeRegeling"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Tijdstempel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:doel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:soortTijdstempel"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:datum"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eId"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="BeoogdeRegeling">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:doel"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:instrumentVersie"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:eId"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="soortTijdstempel" type="data:dtTijdstempeltype"> </xs:element>
+  <xs:simpleType name="dtTijdstempeltype">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="inwerkingtreding"/>
+      <xs:enumeration value="geldigTot"/>
+      <xs:enumeration value="geldigVanaf"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="doel" type="xs:anyURI"/>
+  <xs:element name="instrumentVersie" type="xs:token"/>
+  <xs:element name="datum" type="xs:date"/>
+
+  <!--
+  ================================================ 
+     geldende regelgeving                               
+  ================================================ 
+  -->
+  
+  <xs:element name="ConsolidatieIdentificatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:FRBRWork"/>
+        <xs:element ref="data:isConsolidatieVan"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="isConsolidatieVan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:WorkIdentificatie"/>        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GeldigeInstrumentversies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="data:mgContext"/>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:GeldigeInstrumentVersie"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="GeldigeInstrumentVersie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:toestandRef"/>
+        <xs:element ref="data:geldigheid"/>
+        <xs:element minOccurs="0" ref="data:instrumentVersie"/>
+        <!-- <xs:element ref="data:revisies>revisies niet in XML</xs:element>" -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="toestandRef" type="data:dtSTOPidentificatie"/>
+
+  <xs:element name="geldigheid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="data:Geldigheidsperiode"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Geldigheidsperiode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:inwerkingOp"/>
+        <xs:element maxOccurs="unbounded" minOccurs="0" ref="data:Periode"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="inwerkingOp" type="xs:date"/>
+  <xs:element name="Periode">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="data:vanaf"/>
+        <xs:element minOccurs="0" ref="data:tot"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="vanaf" type="xs:date"/>
+  <xs:element name="tot" type="xs:date"/>
+
+  <!--
+  ================================================ 
+     juridische borging van plannen                               
+  ================================================ 
+  -->
+  <xs:element name="Objectgeldigheid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="data:mgContext"/>
+        <xs:element maxOccurs="1" ref="data:doelen"/>
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:actueleVersie"/>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:geldigheid"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actueleVersie" type="data:dtSTOPidentificatie"/>
+
+  <xs:element name="doelen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="1" ref="data:doel"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="heeftObjectversies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="data:heeftObjectversie"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="heeftObjectversie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="data:Objectversie"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Objectversie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="data:wId"/>
+        <!-- uitbreiding voor revisies mogelijk -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="wId" type="xs:anyURI"/>
+  
+  <!--
+  ================================================ 
+     Informatieobject         
+  ================================================ 
+  -->
+  
+  <xs:element name="Achtergrond">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:brontype" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:bronverwijzing" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:bronbeschrijving" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:bronactualiteit" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:nauwkeurigheid" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="brontype" type="data:dtWaardeRef" />
+  <xs:element name="bronverwijzing" type="xs:anyURI" />
+  <xs:element name="bronbeschrijving" type="xs:token" />
+  <xs:element name="bronactualiteit" type="xs:date" />
+  <xs:element name="nauwkeurigheid" type="xs:integer" />
+  
+  <xs:element name="GeoInformatieMutatie">
+    <xs:complexType>
+      <xs:all>
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:FRBRWork" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:was" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:wordt" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:verwijderd" />
+        <xs:element maxOccurs="1" minOccurs="0" ref="data:toegevoegd" />
+        <xs:element maxOccurs="1" minOccurs="1" ref="data:wijzigingsindicatie" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="was" />
+  <xs:element name="wordt" />
+  <xs:element name="verwijderd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="geo:GeoInformatie" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="toegevoegd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="geo:GeoInformatie" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="wijzigingsindicatie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="1" minOccurs="0" ref="geo:GeoInformatie" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!--
+  ================================================ 
+     generiek                               
+  ================================================ 
+  -->
+  <!-- ag -->
+  <xs:attributeGroup name="agSchemaVersie">
+    <xs:attribute name="schemaversie" type="data:dtSchemaVersie" use="optional"/>
+  </xs:attributeGroup>
+
+  <!-- mg -->
+  <xs:group name="mgContext">
+    <xs:sequence>
+      <xs:element maxOccurs="1" minOccurs="1" ref="data:bekendOp"/>
+      <xs:element maxOccurs="1" minOccurs="0" ref="data:ontvangenOp"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="bekendOp" type="xs:date"/>
+  <xs:element name="ontvangenOp" type="xs:date"/>
+
+
+  <!-- datatypes -->
+  <xs:simpleType name="dtSchemaVersie">
+    <xs:restriction base="xs:token"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="dtSTOPidentificatie">
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="dtWaardeRef">
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+
+</xs:schema>

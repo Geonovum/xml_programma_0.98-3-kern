@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project basedir="." name="imop" default="imop2html">
+
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+  <property name="css.dir" value="css"/>
+  <property name="input.dir" value="input"/>
+  <property name="media.dir" value="media"/>
+  <property name="output.dir" value="output"/>
+
+  <!-- initialiseer mappen -->
+
+  <target name="init" description="Initialiseer mappen">
+    <delete failonerror="no" includeemptydirs="true">
+      <fileset dir="${output.dir}"/>
+    </delete>
+    <copy file="${css.dir}/index.css" todir="${output.dir}"/>
+    <copy todir="${output.dir}/media">
+      <fileset dir="${media.dir}"/>
+    </copy>
+    <copy file="${css.dir}/custom.css" todir="${output.dir}/pages"/>
+  </target>
+
+  <!-- van imop naar html -->
+
+  <target name="transform" description="Genereer index en afzonderlijke pagina's">
+    <xslt basedir="${input.dir}" destdir="${output.dir}" style="imop2html.xsl" processor="trax" force="true">
+      <globmapper from="*.xml" to="*.html"/>
+    </xslt>
+    <copy todir="${output.dir}/media" failonerror="false">
+      <fileset dir="${input.dir}/media">
+        <include name="**.*"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <!-- totale transformatie van imop naar html -->
+
+  <target name="imop2html" description="Converteer van imop naar html" depends="init,transform"/>
+  
+</project>

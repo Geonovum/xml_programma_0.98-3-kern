@@ -1,0 +1,162 @@
+﻿@charset "UTF-8";
+@import url(http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css);
+
+/* algemeen */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* scherm */
+
+html {
+    height: 100%;
+}
+body {
+    background-color: lightgrey;
+    height: 100%;
+    word-wrap: break-word;
+}
+div.page {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    width: 960px;
+}
+
+/* sidebar */
+
+div.sidebar {
+    border-right: 1px solid;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 12px 12px 12px;
+    width: 240px;
+}
+
+/* logo */
+
+div.logo {
+    display: block;
+    margin: 0px 0px 12px 0px;
+}
+
+/* menu */
+
+div.menu {
+    height: 100%;
+}
+div.menu ul.mainmenu, ul.submenu {
+    list-style: none;
+}
+div.menu ul.mainmenu a {
+    background-color: rgba(121,183,41,0.5);
+    color: black;
+    display: block;
+    font-family: 'Verdana', sans-serif;
+    font-size: 10pt;
+    line-height: 14pt;
+    margin-top: 1px;
+    padding: 6px 12px 6px 12px;
+    text-decoration: none;
+}
+div.menu ul.mainmenu a:hover {
+    background-color: rgba(121,183,41,1);
+}
+div.menu ul.mainmenu li:hover ul.submenu {
+    max-height: 500px;
+}
+div.menu ul.submenu a {
+    background-color: rgba(121,183,41,0.25);
+}
+div.menu ul.submenu a:hover {
+    background-color: rgba(121,183,41,1);
+}
+div.menu ul.submenu {
+    max-height: 0;
+    padding: 0px 0px 0px 12px;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+/* metadata */
+
+div.metadata {
+    color: rgba(255,0,0,1);
+    margin-top: auto;
+}
+div.metadata_uitspraak {
+    margin-top: 14px;
+}
+p.metadata_uitspraak {
+    font-family: 'Verdana', sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    line-height: 14px;
+}
+p.metadata_waarde {
+    font-family: 'Verdana', sans-serif;
+    font-size: 8pt;
+    line-height: 14px;
+}
+
+/* content */
+div.content {
+    background-image: url(../media/concept.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    padding: 0px 0px 0px 12px;
+    width: 684px;
+}
+div.title {
+    border-bottom: 1px solid;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    margin: 12px 0px 12px 0px;
+    padding: 0px 0px 12px 0px;
+}
+p.title {
+    font-family: 'Verdana', sans-serif;
+    font-size: 13pt;
+    line-height: 14px;
+}
+div.target {
+    height: 100%;
+}
+iframe[name="content"] {
+    border: none;
+    height: 100%;
+    height: calc(100% - 12px);
+    height: -moz-calc(100% - 12px);
+    height: -webkit-calc(100% - 12px);
+    width: 100%;
+}
+
+/* verschilweergave */
+
+div.was {
+    background-color: rgba(255,0,0,0.25);
+    display: block;
+    margin: 3pt 0pt 3pt 0pt;
+    padding: 3pt 6pt 3pt 6pt;
+}
+div.wordt {
+    background-color: rgba(121,183,41,0.5);
+    display: block;
+    margin: 3pt 0pt 3pt 0pt;
+    padding: 3pt 6pt 3pt 6pt;
+}
